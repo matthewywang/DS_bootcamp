@@ -40,16 +40,19 @@ Fuzzywuzzy - Python library that uses Levenshtein Distance for approximate strin
 ## Datafiles Used
 
 MTA Turnstile Data - 
+
 http://web.mta.info/developers/turnstile.html 
 
 All entries and exits data from MTA turnstiles from April 1st 2019 to June 30th 2019
 
 US Census Tract Data (specifically 2017 data) - 
+
 https://www.kaggle.com/muonneutrino/us-census-demographic-data/data
 
 Data shows household income by US Census Tract
 
 NYC Subway Station Geo Data (Latitude, Longitude) - 
+
 http://web.mta.info/developers/data/nyct/subway/Stations.csv
 
 Data gives information on Latitude and Longitude of each subway station

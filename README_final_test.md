@@ -10,46 +10,39 @@ NYC Subway Station geographical data will allow us to map each station to a cens
 ## 1. Identifying Key Factors
 
 #### Weight below 3 factors using relative importance of each factor
- - Location 
+ - Location
+    - Identify top stations with the most foot traffic. 
+    - Stations with heaviest foot traffic would give WTWY street teams access to most opportunities to interact with potential attendees.
 
-Identify top stations with the most foot traffic. 
-Stations with heaviest foot traffic would give WTWY street teams access to most opportunities to interact with potential attendees.
-- Demographics
+ - Demographics
+    - Identify top stations in neighborhoods with specific income thresholds. 
+    - The purpose of the Gala is to fundraise so it would make sense to hone in on stations located in neighborhoods with high income households.
 
-Identify top stations in neighborhoods with specific income thresholds. 
-The purpose of the Gala is to fundraise so it would make sense to hone in on stations located in neighborhoods with high income households.
-
-- Time
-
-Optimizing date and time that the street team can focus on.
-To maximize the street team’s efficiency, we wanted to track down the specific days of the week and times of the day for the team to focus their efforts.
+ - Time
+    - Optimizing date and time that the street team can focus on.
+    - To maximize the street team’s efficiency, we wanted to track down the specific days of the week and times of the day for the team to focus their efforts.
 
 ## 2. Packages Used
 
-- pandas: Python package for data manipulation and analysis.
-- numpy: fundamental package for scientific computing in Python
-- matplotlib: plotting and visualization package for Python
-- seaborn: Python visualization package based on matplotlib
-- pickle: Python module serializing and deserializing Python objects for faster object loading
-- datetime: module allows for datetime extraction and manipulation
-- requests: Python HTTP library that provides a simple API to abstract the complexities of making HTTP requests
-- urllib: package that contains several modules for working with URLs (e.g. opening and reading URLs, parsing URLs, etc.)
-- fuzzywuzzy: Python library that uses Levenshtein Distance algorithm for approximate string matching.
+ - pandas: Python package for data manipulation and analysis.
+ - numpy: fundamental package for scientific computing in Python
+ - matplotlib: plotting and visualization package for Python
+ - seaborn: Python visualization package based on matplotlib
+ - pickle: Python module serializing and deserializing Python objects for faster object loading
+ - datetime: module allows for datetime extraction and manipulation
+ - requests: Python HTTP library that provides a simple API to abstract the complexities of making HTTP requests
+ - urllib: package that contains several modules for working with URLs (e.g. opening and reading URLs, parsing URLs, etc.)
+ - fuzzywuzzy: Python library that uses Levenshtein Distance algorithm for approximate string matching.
 
 ## 3. Datafiles Used
 
-- MTA Turnstile Data 
-
-http://web.mta.info/developers/turnstile.html 
+[MTA Turnstile Data] (http://web.mta.info/developers/turnstile.html)
 All entries and exits data from MTA turnstiles from April 1st 2019 to June 30th 2019
 
-- US Census Tract Data (specifically 2017 data)
-
-https://www.kaggle.com/muonneutrino/us-census-demographic-data/data
+[US Census Tract Data (specifically 2017 data)] (https://www.kaggle.com/muonneutrino/us-census-demographic-data/data)
 Data shows household income by US Census Tract
 
-- NYC Subway Station Geo Data (Latitude, Longitude)
-http://web.mta.info/developers/data/nyct/subway/Stations.csv
+[NYC Subway Station Geo Data (Latitude, Longitude)] ( http://web.mta.info/developers/data/nyct/subway/Stations.csv)
 Data gives information on latitude and longitude of each subway station
 
 ## 4. EDA
@@ -74,25 +67,20 @@ Finally, we grouped the data by trailing four-hour periods (dropping erroneous d
 
 ## 5. Creating Visualizations
 
-- Top 20 stations with the highest daily foot traffic
+ - Top 20 stations with the highest daily foot traffic
+    - After cleaning the MTA turnstile data, we aggregated total traffic (cumulative sum of entries and exits) by station name and sorted in descending order to find the top 20 stations
 
-After cleaning the MTA turnstile data, we aggregated total traffic (cumulative sum of entries and exits) by station name and sorted in descending order to find the top 20 stations
+ - Median HH income of the top 20 stations
+    - Cleaned the US census data and filtered the top 20 stations with highest foot traffic and graphed their median HH income
 
-- Median HH income of the top 20 stations
+ - Income percentile for the top 20 stations
+    - Used the same data as above and instead of using median HH income, we graphed top 20 stations’ income percentile (based on the census tract ID of each station)
 
-Cleaned the US census data and filtered the top 20 stations with highest foot traffic and graphed their median HH income
+ - Total traffic by day of week for the top 5 stations
+    - Filtered the MTA data to include only the top 5 stations based on 50 / 50 weighted score of foot traffic and income and identified days of the week with the most traffic
 
-- Income percentile for the top 20 stations
-
-Used the same data as above and instead of using median HH income, we graphed top 20 stations’ income percentile (based on the census tract ID of each station)
-
-- Total traffic by day of week for the top 5 stations
-
-Filtered the MTA data to include only the top 5 stations based on 50 / 50 weighted score of foot traffic and income and identified days of the week with the most traffic
-
-- Traffic heatmap for time of day for top 5 stations and top 3 days of week
-
-Created a chart to show which trailing 4-hour periods hours were the busiest for our top 5 stations for top three days of the week
+ - Traffic heatmap for time of day for top 5 stations and top 3 days of week
+    - Created a chart to show which trailing 4-hour periods hours were the busiest for our top 5 stations for top three days of the week
 
 ## 6. Analysis and Recommendation
 We used our three factors framework in order to conduct our analysis.  As stated above, our three factors were time, location, and income demographics.
@@ -102,11 +90,11 @@ For location, we found the top five stations in terms of total foot traffic (ent
 For income, we found that a wide variety of median household income for the census tracts in which the top 20 most trafficked stations are located.  In particular, although 59 St Columbus Circle and 47-50 Sts - Rockefeller Center were not in the top five stations by total traffic, their very high rank in household incomes elevated them to be included in our top five final recommendations (see below).
 
 Based on our weighted score methodology (50% traffic, 50% income), we recommend the following top 5 stations:
-34 St - Penn Station
-59 St - Columbus Circle
-34 St - Herald Square
-14 St - Union Sq
-47-50 Sts - Rockefeller Center
+ 1. 34 St - Penn Station
+ 2. 59 St - Columbus Circle
+ 3. 34 St - Herald Square
+ 4. 14 St - Union Sq
+ 5. 47-50 Sts - Rockefeller Center
 
 For time of day, we filtered our data according to the top five stations above and found that of those, Tuesday, Wednesday, and Thursday during the 4-8pm block constituted the optimal day/time windows for canvassing and collecting email addresses.
 
@@ -117,4 +105,3 @@ Matt Wang, Louis Sagan, Preston Lam, Sophia Li
 #### Thanks for reading!
 
 <img src="https://4.bp.blogspot.com/-6qFetQ3Mti4/VcosbirJeaI/AAAAAAAAdXs/Rg9Rl9ANbro/s1600/IMG_2892%2B%25281%2529.jpg" width="550">
-

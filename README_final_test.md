@@ -24,7 +24,7 @@ NYC Subway Station geographical data will allow us to map each station to a cens
 
 ## 2. Packages Used
 
- - pandas: Python package for data manipulation and analysis.
+ - pandas: Python package for data manipulation and analysis
  - numpy: fundamental package for scientific computing in Python
  - matplotlib: plotting and visualization package for Python
  - seaborn: Python visualization package based on matplotlib
@@ -32,18 +32,18 @@ NYC Subway Station geographical data will allow us to map each station to a cens
  - datetime: module allows for datetime extraction and manipulation
  - requests: Python HTTP library that provides a simple API to abstract the complexities of making HTTP requests
  - urllib: package that contains several modules for working with URLs (e.g. opening and reading URLs, parsing URLs, etc.)
- - fuzzywuzzy: Python library that uses Levenshtein Distance algorithm for approximate string matching.
+ - fuzzywuzzy: Python library that uses Levenshtein Distance algorithm for approximate string matching
 
 ## 3. Datafiles Used
 
-[MTA Turnstile Data] (http://web.mta.info/developers/turnstile.html)
-All entries and exits data from MTA turnstiles from April 1st 2019 to June 30th 2019
+ - [MTA Turnstile Data](http://web.mta.info/developers/turnstile.html)
+    - All entries and exits data from MTA turnstiles from April 1st 2019 to June 30th 2019
 
-[US Census Tract Data (specifically 2017 data)] (https://www.kaggle.com/muonneutrino/us-census-demographic-data/data)
-Data shows household income by US Census Tract
+ - [US Census Tract Data (specifically 2017 data)](https://www.kaggle.com/muonneutrino/us-census-demographic-data/data)
+    - Data shows household income by US Census Tract
 
-[NYC Subway Station Geo Data (Latitude, Longitude)] ( http://web.mta.info/developers/data/nyct/subway/Stations.csv)
-Data gives information on latitude and longitude of each subway station
+ - [NYC Subway Station Geo Data (Latitude, Longitude](http://web.mta.info/developers/data/nyct/subway/Stations.csv)
+    - Data gives information on latitude and longitude of each subway station
 
 ## 4. EDA
 

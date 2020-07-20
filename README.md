@@ -1,6 +1,6 @@
 # Metis Project 2: Linear Regression / Tennis Analytics
 
-#### Goal: Identify statistics that have the biggest impact in predicting a men’s singles tennis player’s career high ranking
+## GOAL: Identify statistics that have the biggest impact in predicting a men’s singles tennis player’s career high ranking
 
 ## 1. Data Acquisition via Web Scraping (Selenium, BeautifulSoup)
 

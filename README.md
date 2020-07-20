@@ -74,10 +74,10 @@ I also conducted a pairplot of all the continuous variables/features.  Based on 
 
 First I fit a linear regression model using statsmodels OLS.  Then I selected the features with p-values lower than 0.15 (since a low p-value suggests there is a high likelihood that that a particular feature has a meaningful impact/correlation with the target).  I narrowed down the list further and removed a couple of features because they were directly correlated with another feature, each time keeping the feature with the lower p-value.  
 
-Then I created a dataframe with all my selected features, and a separate dataframe with my target.  I split both into cross-validation/test based on an 80/20 split.  After that I performed cross-validation with 5 splits to test three different models:
-    1. Linear regression
-    2. Ridge regression (alpha = 0.01)
-    3. LASSO regression (alpha = 0.01)
+Then I created a dataframe with all my selected features, and a separate dataframe with my target.  I split both into cross-validation/test based on an 80/20 split.  After that I performed cross-validation with 5 splits to test three different models: 
+   1. Linear regression
+   2. Ridge regression (alpha = 0.01)
+   3. LASSO regression (alpha = 0.01)
   
 I selected r squared and RMSE as my scoring metrics for comparing the three models, calculating the mean values for both metrics across the five folds.  Based on this, the LASSO model performed the best (highest r squared and lowest RMSE) so I continued to iterate on different LASSO models.
 
@@ -93,7 +93,7 @@ Finally, I removed "aces_squared" because it had a zero coefficient in 2/5 folds
 
 ### 3.4 Final Model
 
-Finally, I fit the model on the entire 80% cross-validation data and scored it on the test data.  The RMSE on test data was approximately 11.7678, or almost 22% lower than the RMSE on the first LASSO model!
+Finally, I fit the model on the entire 80% cross-validation data and scored it on the test data.  The RMSE on test data was approximately 11.7678, or almost **22% lower** than the RMSE on the first LASSO model!
  
 ## 4. Post-Modeling / Model Accuracy / Residuals
 
@@ -102,7 +102,7 @@ I first created a dataframe df_tennis_model_test based on x_test, y_test, and th
 
 The next step was to take a deeper dive into the residuals.  In particular, I was curious about 'undervalued' players, i.e. players where the model predicted a higher rank (or lower number) than the players' actual career high ranking.  I found five such players in the test data.  One in particular, John Millman of Australia, caught my attention immediately, since he had upset 20-time Grand Slam winner Roger Federer (who many tennis fans consider to be the Greatest of All Time, or GOAT) at the US Open in 2018.
 
-I also wanted to take a closer look at my model's accuracy on the test data.  Overall, just under 50% of predictions were within 5 ranking points, and just over 70% of predictions were within 10 ranking points.
+I also wanted to take a closer look at my model's accuracy on the test data.  Overall, just **under 50%** of predictions were within 5 ranking points, and just **over 70%** of predictions were within 10 ranking points.
 
 ### 4.2 Cross-Validation - create dataframe, analyze actual vs. model predictions
 Similar to above, I created a dataframe df_cv_model based on x_crossval, y_cv, and model's predictions (i.e. y_cv_pred).  Then I created another dataframe df_cv_players, filtering to include only the indices in x_crossval, and then filtering columns to include only the columns/features included in the final model, plus other metadata columns (e.g. name, season).  After spot-checking a couple of rows to make sure the indices and column values matched between df_cv_model and df_cv_players, I cleaned up the latter to include only a few columns and merged the two dataframes.  Then I calculated residuals.
@@ -116,7 +116,7 @@ Next I wanted to find the intercept of the equation/model with the pre-scaled co
 
 log_bestrank = 7.886305985188102 - 0.02258998 * first_srv_return_won_pct - 0.01485758 * upsets_against_pct - 1.93878343 * games_to_matches_perf_ratio - 2.15198387 * points_dominance_squared 
 
-Then I created a function final_model_pred_bestrank that would take as inputs an array of values (for the four features), coefficients (pre-scaling), and the intercept and return the predicted value for bestrank (**not** log_bestrank).  I used this function to compare the predicted bestrank (from this linear algebra method) to the predicted bestrank (from my model) to confirm that the function (and the equation above) are correct.
+Then I created a function final_model_pred_bestrank that would take as inputs an array of values (for the four features), coefficients (pre-scaling), and the intercept and return the predicted value for bestrank (**not** log_bestrank).  I used this function to compare the predicted bestrank (from this linear algebra method) to the predicted bestrank (from my model) for a couple of rows of data to confirm that the function (and the equation above) are correct.
 
 Finally, I took a sample data point (x1) and created four new sample data points (x2, x3, x4, x5), each one incrementing a specific feature/column.  I used the function above final_model_pred_bestrank to calculate the predicted best rank, and then calculated the difference between the predicted values for x2 to x5 vs. predicted value for x1 (i.e. change in ranking for incremental changes in features).
 

@@ -19,19 +19,19 @@ After that I directed webdriver to close the Google Chrome window, and open a ne
 
 This time I directed webdriver to click on "Statistics."  The first statistic that shows up is "Aces."  I then told webdriver to click on the '15' dropdown and select 'All.'  Then I used BeautifulSoup to extract the source code, applied the same three functions as above to get the data in a dataframe matching the table on the website, and pickled the dataframe.
 
-For the next statistic, I directed webdriver to click on the 'Category' dropdown and select '1st Serve Won %.'  I repeated the steps above extracting the source code, getting the data into a dataframe, and pickling the dataframe.  Following that, I merged this dataframe with the previous dataframe (containing 'Aces."
+For the next statistic, I directed webdriver to click on the 'Category' dropdown and select '1st Serve Won %.'  I repeated the steps above extracting the source code, getting the data into a dataframe, and pickling the dataframe.  Following that, I merged this dataframe with the previous dataframe (containing 'Aces').
 
 I repeated this process for ten more statistics (see below), each time directing webdriver to click on the statistic, extracting the source code with BeautifulSoup, creating a dataframe with my functions, pickling the dataframe, and merging this latest dataframe with the dataframe containing previous statistics.  
-    - 2nd Serve Won %
-    - 1st Srv Return Won %
-    - 2nd Srv Return Won %
-    - Services Games Won %
-    - Return Games Won %
-    - Upsets Against %
-    - Break Points Won %
-    - Scrape Tie-Breaks Won %
-    - Points Dominance %
-    - Gms. to Matches Ov.-Perf.
+* 2nd Serve Won %
+* 1st Srv Return Won %
+* 2nd Srv Return Won %
+* Services Games Won %
+* Return Games Won %
+* Upsets Against %
+* Break Points Won %
+* Scrape Tie-Breaks Won %
+* Points Dominance %
+* Gms. to Matches Ov.-Perf.
 
 Finally, I merged the dataframe with all the statistics (df_2018_stats) with the dataframe containing the next year's rankings (df_2019_rankings_sum) to create a master dataframe (df_2018_master) and pickled it.
 
@@ -58,7 +58,7 @@ Same process as above, summarized below:
 
 ### 1.5 Combine all dataframes
 
-Finally I renamed 'Rank_YE...." column in all the master dataframes to 'Rank_YE_NextSeason,' verified that all the column names are the same across all four dataframes, concatenated them into a single dataframe, and picked it. 
+Finally I renamed 'Rank_YE...." column in all the master dataframes to 'Rank_YE_NextSeason,' verified that all the column names are the same across all four dataframes, concatenated them into a single dataframe, and pickled it. 
 
 
 ## 2. Data Cleaning and EDA / Plotting
@@ -113,14 +113,10 @@ Again, I was curious about 'undervalued' players.  Among the two I found, one, H
 First I found the standard deviations of the original four features (in my final model).  Then I calculated the coefficients in the original scales of the four features by dividing by these standard deviations, and organized the data in the dataframe model_features.  
 
 Next I wanted to find the intercept of the equation/model with the pre-scaled coefficients and features, and the target (log_bestrank).  I used the first row of data in x_test, my final model, and linear algebra to find the intercept of approximately 7.8863.  Now I had figured out the following equation, where the inputs/features were the original pre-scaled values:
-log_bestrank = 
-7.886305985188102 
-- 0.02258998 * first_srv_return_won_pct 
-- 0.01485758 * upsets_against_pct
-- 1.93878343 * games_to_matches_perf_ratio 
-- 2.15198387 * points_dominance_squared 
 
-Then I created a function final_model_pred_bestrank that would take as inputs an array of values (for the four features), coefficients (pre-scaling), and the intercept and return the predicted value for bestrank (not log_bestrank).  I used this function to compare the predicted bestrank (from this linear algebra method) to the predicted bestrank (from my model) to confirm that the function (and the equation above) are correct.
+log_bestrank = 7.886305985188102 - 0.02258998 * first_srv_return_won_pct - 0.01485758 * upsets_against_pct - 1.93878343 * games_to_matches_perf_ratio - 2.15198387 * points_dominance_squared 
+
+Then I created a function final_model_pred_bestrank that would take as inputs an array of values (for the four features), coefficients (pre-scaling), and the intercept and return the predicted value for bestrank (**not** log_bestrank).  I used this function to compare the predicted bestrank (from this linear algebra method) to the predicted bestrank (from my model) to confirm that the function (and the equation above) are correct.
 
 Finally, I took a sample data point (x1) and created four new sample data points (x2, x3, x4, x5), each one incrementing a specific feature/column.  I used the function above final_model_pred_bestrank to calculate the predicted best rank, and then calculated the difference between the predicted values for x2 to x5 vs. predicted value for x1 (i.e. change in ranking for incremental changes in features).
 
